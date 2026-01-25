@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const ExpenseTrackerApp());
@@ -7,18 +9,35 @@ void main() {
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
+  Future<void> _launchUrl(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FE),
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Color(0xFF6C63FF),
+        statusBarIconBrightness: Brightness.light,
+        statusBarBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        backgroundColor: const Color(0xFFF8F9FE),
+        body: SingleChildScrollView(
           child: Column(
             children: [
               // Header
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(32),
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).padding.top + 16,
+                  left: 32,
+                  right: 32,
+                  bottom: 32,
+                ),
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
@@ -260,34 +279,46 @@ class AboutScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     _buildSocialTile(
+                      icon: Icons.language_rounded,
+                      title: 'Website',
+                      subtitle: 'alizaali.com',
+                      color: const Color(0xFF6C63FF),
+                      onTap: () => _launchUrl('https://alizaali.com'),
+                    ),
+                    _buildSocialTile(
                       icon: Icons.code_rounded,
                       title: 'GitHub',
                       subtitle: 'github.com/stackmasteraliza',
                       color: const Color(0xFF333333),
+                      onTap: () => _launchUrl('https://github.com/stackmasteraliza'),
                     ),
                     _buildSocialTile(
                       icon: Icons.work_rounded,
                       title: 'LinkedIn',
                       subtitle: 'linkedin.com/in/stackmasteraliza',
                       color: const Color(0xFF0077B5),
+                      onTap: () => _launchUrl('https://linkedin.com/in/stackmasteraliza'),
                     ),
                     _buildSocialTile(
                       icon: Icons.play_circle_filled_rounded,
                       title: 'YouTube',
                       subtitle: 'youtube.com/@stackmasteraliza',
                       color: const Color(0xFFFF0000),
+                      onTap: () => _launchUrl('https://youtube.com/@stackmasteraliza'),
                     ),
                     _buildSocialTile(
                       icon: Icons.camera_alt_rounded,
                       title: 'Instagram',
                       subtitle: 'instagram.com/stackmasteraliza',
                       color: const Color(0xFFE4405F),
+                      onTap: () => _launchUrl('https://instagram.com/stackmasteraliza'),
                     ),
                     _buildSocialTile(
                       icon: Icons.facebook_rounded,
                       title: 'Facebook',
                       subtitle: 'facebook.com/stackmasteraliza',
                       color: const Color(0xFF1877F2),
+                      onTap: () => _launchUrl('https://facebook.com/stackmasteraliza'),
                     ),
                     _buildSocialTile(
                       icon: Icons.coffee_rounded,
@@ -295,6 +326,7 @@ class AboutScreen extends StatelessWidget {
                       subtitle: 'buymeacoffee.com/stackmasteraliza',
                       color: const Color(0xFFFFDD00),
                       iconColor: Colors.black,
+                      onTap: () => _launchUrl('https://buymeacoffee.com/stackmasteraliza'),
                     ),
                   ],
                 ),
@@ -326,45 +358,49 @@ class AboutScreen extends StatelessWidget {
     required String subtitle,
     required Color color,
     Color iconColor = Colors.white,
+    required VoidCallback onTap,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Icon(icon, color: iconColor, size: 24),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
-        title: Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF2D3436),
+        child: ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          leading: Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(icon, color: iconColor, size: 24),
           ),
-        ),
-        subtitle: Text(
-          subtitle,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 12,
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF2D3436),
+            ),
           ),
+          subtitle: Text(
+            subtitle,
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 12,
+            ),
+          ),
+          trailing: Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[400], size: 16),
         ),
-        trailing: Icon(Icons.arrow_forward_ios_rounded, color: Colors.grey[400], size: 16),
       ),
     );
   }
