@@ -14,6 +14,10 @@
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green.svg" alt="Platform">
 </p>
 
+<p align="center">
+  <img src="assets/feature_graphic.png" width="100%" alt="Expense Tracker Feature Graphic">
+</p>
+
 ---
 
 ## Features
