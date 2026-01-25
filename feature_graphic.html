@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Expense Tracker - Feature Graphic</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .toolbar {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .toolbar h2 {
+            font-size: 18px;
+            color: #333;
+        }
+        .toolbar span {
+            color: #666;
+            font-size: 14px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.4);
+        }
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .graphic-wrapper {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .container {
+            width: 1024px;
+            height: 500px;
+            background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 50%, #A5A0FF 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            z-index: 2;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 58px;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        .tagline {
+            font-size: 26px;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.4;
+        }
+        .phone-mockup {
+            width: 220px;
+            height: 440px;
+            background: #1a1a2e;
+            border-radius: 35px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: rotate(5deg);
+            z-index: 2;
+        }
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .phone-header {
+            background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
+            padding: 15px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .balance-card {
+            background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
+            margin: 10px;
+            padding: 15px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+        .balance-label {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        .balance-amount {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .phone-content {
+            padding: 10px;
+            flex: 1;
+        }
+        .expense-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .expense-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .expense-details {
+            flex: 1;
+        }
+        .expense-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #2D3436;
+        }
+        .expense-cat {
+            font-size: 9px;
+            color: #636E72;
+        }
+        .expense-amount {
+            font-size: 12px;
+            font-weight: 600;
+            color: #E74C3C;
+        }
+        .bg-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+        }
+        .circle1 { width: 300px; height: 300px; top: -100px; right: 200px; }
+        .circle2 { width: 200px; height: 200px; bottom: -50px; left: 100px; }
+        .circle3 { width: 150px; height: 150px; top: 50px; left: -50px; }
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .icon svg {
+            width: 45px;
+            height: 45px;
+            fill: #6C63FF;
+        }
+    </style>
+</head>
+<body>
+    <div class="toolbar">
+        <h2>Expense Tracker Feature Graphic</h2>
+        <span>1024 x 500 px (Google Play Console)</span>
+        <button class="download-btn" onclick="downloadGraphic()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            Download PNG
+        </button>
+    </div>
+
+    <div class="graphic-wrapper">
+        <div class="container" id="graphic">
+            <div class="bg-circles">
+                <div class="circle circle1"></div>
+                <div class="circle circle2"></div>
+                <div class="circle circle3"></div>
+            </div>
+            <div class="content">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+                </div>
+                <h1>Expense Tracker</h1>
+                <p class="tagline">Track spending effortlessly. Take control of your finances.</p>
+            </div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-header">My Expenses</div>
+                    <div class="balance-card">
+                        <div class="balance-label">Total Spent</div>
+                        <div class="balance-amount">$1,245.00</div>
+                    </div>
+                    <div class="phone-content">
+                        <div class="expense-item">
+                            <div class="expense-icon" style="background: #FFE8E8;">&#127828;</div>
+                            <div class="expense-details">
+                                <div class="expense-name">Lunch</div>
+                                <div class="expense-cat">Food</div>
+                            </div>
+                            <div class="expense-amount">-$12.50</div>
+                        </div>
+                        <div class="expense-item">
+                            <div class="expense-icon" style="background: #E8F4FF;">&#128663;</div>
+                            <div class="expense-details">
+                                <div class="expense-name">Uber Ride</div>
+                                <div class="expense-cat">Transport</div>
+                            </div>
+                            <div class="expense-amount">-$8.00</div>
+                        </div>
+                        <div class="expense-item">
+                            <div class="expense-icon" style="background: #FFF3E8;">&#128722;</div>
+                            <div class="expense-details">
+                                <div class="expense-name">Groceries</div>
+                                <div class="expense-cat">Shopping</div>
+                            </div>
+                            <div class="expense-amount">-$45.30</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadGraphic() {
+            const element = document.getElementById('graphic');
+            html2canvas(element, {
+                width: 1024,
+                height: 500,
+                scale: 1,
+                useCORS: true,
+                backgroundColor: null
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'expense_tracker_feature_graphic_1024x500.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>
