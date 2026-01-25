@@ -1,0 +1,40 @@
+name: expense_tracker
+description: "A beautiful expense tracking app"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.5
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "#6C63FF"
+  adaptive_icon_foreground: "assets/icon.png"
+
+flutter_native_splash:
+  color: "#6C63FF"
+  image: assets/icon.png
+  color_dark: "#6C63FF"
+  image_dark: assets/icon.png
+  android_12:
+    color: "#6C63FF"
+    icon_background_color: "#6C63FF"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
