@@ -30,8 +30,14 @@
             align-items: center;
             gap: 20px;
         }
-        .toolbar h2 { font-size: 18px; color: #333; }
-        .toolbar span { color: #666; font-size: 14px; }
+        .toolbar h2 {
+            font-size: 18px;
+            color: #333;
+        }
+        .toolbar span {
+            color: #666;
+            font-size: 14px;
+        }
         .download-btn {
             background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
             color: white;
@@ -44,115 +50,159 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(108, 99, 255, 0.4); }
-        .download-btn svg { width: 20px; height: 20px; fill: white; }
-        .graphic-wrapper { box-shadow: 0 10px 40px rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden; }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(108, 99, 255, 0.4);
+        }
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
+        }
+        .graphic-wrapper {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
         .container {
             width: 1024px;
             height: 500px;
             background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 50%, #A5A0FF 100%);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 80px;
+            justify-content: space-between;
+            padding: 0 80px;
             position: relative;
             overflow: hidden;
         }
-        .content { z-index: 2; max-width: 400px; }
+        .content {
+            z-index: 2;
+            max-width: 500px;
+        }
         h1 {
-            font-size: 48px;
+            font-size: 58px;
             color: white;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
         }
-        .tagline { font-size: 22px; color: rgba(255,255,255,0.95); line-height: 1.4; }
+        .tagline {
+            font-size: 26px;
+            color: rgba(255,255,255,0.95);
+            line-height: 1.4;
+        }
         .phone-mockup {
-            width: 180px;
-            height: 360px;
+            width: 220px;
+            height: 440px;
             background: #1a1a2e;
-            border-radius: 28px;
-            padding: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-radius: 35px;
+            padding: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            transform: rotate(5deg);
             z-index: 2;
-            flex-shrink: 0;
         }
         .phone-screen {
             width: 100%;
             height: 100%;
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
         .phone-header {
             background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
-            padding: 10px;
+            padding: 15px;
             color: white;
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 600;
-            text-align: center;
         }
         .balance-card {
             background: linear-gradient(135deg, #6C63FF 0%, #8B85FF 100%);
-            margin: 6px;
-            padding: 10px;
-            border-radius: 8px;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 12px;
             color: white;
             text-align: center;
         }
-        .balance-label { font-size: 8px; opacity: 0.9; }
-        .balance-amount { font-size: 18px; font-weight: bold; }
-        .phone-content { padding: 6px; flex: 1; }
+        .balance-label {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+        .balance-amount {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .phone-content {
+            padding: 10px;
+            flex: 1;
+        }
         .expense-item {
             display: flex;
             align-items: center;
-            padding: 6px;
+            padding: 10px;
             border-bottom: 1px solid #eee;
         }
         .expense-icon {
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 6px;
-            font-size: 12px;
+            margin-right: 10px;
+            font-size: 16px;
         }
-        .expense-details { flex: 1; }
-        .expense-name { font-size: 9px; font-weight: 600; color: #2D3436; }
-        .expense-cat { font-size: 7px; color: #636E72; }
-        .expense-amount { font-size: 9px; font-weight: 600; color: #E74C3C; }
+        .expense-details {
+            flex: 1;
+        }
+        .expense-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #2D3436;
+        }
+        .expense-cat {
+            font-size: 9px;
+            color: #636E72;
+        }
+        .expense-amount {
+            font-size: 12px;
+            font-weight: 600;
+            color: #E74C3C;
+        }
         .bg-circles {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            pointer-events: none;
         }
         .circle {
             position: absolute;
             border-radius: 50%;
             background: rgba(255,255,255,0.1);
         }
-        .circle1 { width: 200px; height: 200px; top: -60px; left: 30%; }
-        .circle2 { width: 150px; height: 150px; bottom: -40px; left: 60px; }
-        .circle3 { width: 100px; height: 100px; top: 40px; left: -30px; }
-        .circle4 { width: 120px; height: 120px; bottom: -30px; right: 20%; }
+        .circle1 { width: 300px; height: 300px; top: -100px; right: 200px; }
+        .circle2 { width: 200px; height: 200px; bottom: -50px; left: 100px; }
+        .circle3 { width: 150px; height: 150px; top: 50px; left: -50px; }
         .icon {
-            width: 64px;
-            height: 64px;
+            width: 80px;
+            height: 80px;
             background: white;
-            border-radius: 14px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .icon svg { width: 36px; height: 36px; fill: #6C63FF; }
+        .icon svg {
+            width: 45px;
+            height: 45px;
+            fill: #6C63FF;
+        }
     </style>
 </head>
 <body>
@@ -164,13 +214,13 @@
             Download PNG
         </button>
     </div>
+
     <div class="graphic-wrapper">
         <div class="container" id="graphic">
             <div class="bg-circles">
                 <div class="circle circle1"></div>
                 <div class="circle circle2"></div>
                 <div class="circle circle3"></div>
-                <div class="circle circle4"></div>
             </div>
             <div class="content">
                 <div class="icon">
@@ -188,7 +238,7 @@
                     </div>
                     <div class="phone-content">
                         <div class="expense-item">
-                            <div class="expense-icon" style="background: #FFE8E8;">🍔</div>
+                            <div class="expense-icon" style="background: #FFE8E8;">&#127828;</div>
                             <div class="expense-details">
                                 <div class="expense-name">Lunch</div>
                                 <div class="expense-cat">Food</div>
@@ -196,7 +246,7 @@
                             <div class="expense-amount">-$12.50</div>
                         </div>
                         <div class="expense-item">
-                            <div class="expense-icon" style="background: #E8F4FF;">🚗</div>
+                            <div class="expense-icon" style="background: #E8F4FF;">&#128663;</div>
                             <div class="expense-details">
                                 <div class="expense-name">Uber Ride</div>
                                 <div class="expense-cat">Transport</div>
@@ -204,7 +254,7 @@
                             <div class="expense-amount">-$8.00</div>
                         </div>
                         <div class="expense-item">
-                            <div class="expense-icon" style="background: #FFF3E8;">🛒</div>
+                            <div class="expense-icon" style="background: #FFF3E8;">&#128722;</div>
                             <div class="expense-details">
                                 <div class="expense-name">Groceries</div>
                                 <div class="expense-cat">Shopping</div>
@@ -216,6 +266,7 @@
             </div>
         </div>
     </div>
+
     <script>
         function downloadGraphic() {
             const element = document.getElementById('graphic');
